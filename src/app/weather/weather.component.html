@@ -6,10 +6,19 @@
     <button type="submit">Get Weather by City</button>
   </form>
 
-  <!-- <div class="striped-divider"></div> -->
 
-  <div class="card forecast-today">
-    <p>test</p>
+  <div>
+    <ngx-skeleton-loader *ngIf="!contentLoaded" class="forecast-container -skeleton" count="1" [theme]="{ 
+      'border-radius': '25px',
+      height: '250px',
+      'background-color': '#e6e6e6'
+    }"></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader *ngIf="!contentLoaded" class="forecast-container -skeleton" count="5" [theme]="{ 
+      'border-radius': '25px',
+      height: '250px',
+      'background-color': '#e6e6e6'
+    }"></ngx-skeleton-loader>
   </div>
 
   <div *ngIf="weatherData">
@@ -21,13 +30,8 @@
     </div>
   </div>
 
-  <div *ngIf="weatherData && forecastData" class="forecast-container">
-    <div class="forecast-item -today">
-      <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
-      <p>Today</p>
-      <p class="temperature">{{ weatherData.main.temp }}°C</p>
-      <!-- <p>Description: {{ weatherData.weather[0].description }}</p> -->
-    </div>
+  <div *ngIf="forecastData" class="forecast-container">
+
     <div *ngFor="let forecast of forecastData.list" class="card forecast-item">
       <img src="http://openweathermap.org/img/wn/{{ forecast.weather[0].icon }}@2x.png" alt="Weather icon">
       <p>Date: {{ forecast.dt_txt }}</p>

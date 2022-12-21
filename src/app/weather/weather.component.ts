@@ -10,6 +10,7 @@ export class WeatherComponent implements OnInit {
   city: string;
   weatherData: any;
   forecastData: any;
+  contentLoaded: boolean = false;
 
   constructor(private http: HttpClient) {
     this.city = '';
@@ -43,6 +44,7 @@ export class WeatherComponent implements OnInit {
       url += `&q=${city}`;
     }
     this.http.get(url).subscribe((data) => (this.weatherData = data));
+    this.contentLoaded = true;
   }
 
   getForecast(lat: number | null, lon: number | null, city?: string) {
@@ -59,6 +61,8 @@ export class WeatherComponent implements OnInit {
         return date.getHours() === 0 && date.getMinutes() === 0 && date.getSeconds() === 0;
       });
     });
+    this.contentLoaded = true;
+
   }
 }
 

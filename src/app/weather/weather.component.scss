@@ -2,35 +2,35 @@
 
 .forecast-container {
   display: flex;
-  flex-flow: wrap;
   gap: 20px;
+
+  &.-skeleton {
+    flex-flow: nowrap;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .forecast-container {
+    flex-flow: wrap;    
+  }
 }
 
 .forecast-item {
   padding: 25px;
   background-color: $primaryColor;
+  flex: 1 1 auto;
 
   .temperature {
     font-size: 28px;
   }
 
   &.-today {
-    background-color: $primaryColor;
-    border: 3px solid transparent;
+    background: rgb(204, 171, 238);
+    background: linear-gradient(
+      228deg,
+      rgba(204, 171, 238, 1) 27%,
+      rgba(0, 212, 255, 1) 100%,
+      rgba(0, 212, 255, 1) 100%
+    );
   }
-}
-
-.striped-divider {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 8px,
-    currentcolor 8px,
-    currentcolor 10px
-  );
-  padding: 0;
-  aspect-ratio: 6 / 1;
-  border: 0;
-  display: block;
-  color: inherit;
 }
