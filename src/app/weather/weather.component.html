@@ -1,0 +1,49 @@
+<div>
+  <button (click)="getWeatherByLocation()">Get Weather by Location</button>
+  <form (submit)="getWeatherByCity()">
+    <label for="city">City:</label>
+    <input type="text" id="city" [(ngModel)]="city" name="city">
+    <button type="submit">Get Weather by City</button>
+  </form>
+
+  <!-- <div class="striped-divider"></div> -->
+
+  <div class="card forecast-today">
+    <p>test</p>
+  </div>
+
+  <div *ngIf="weatherData">
+    <div class="card forecast-item -today">
+      <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
+      <p>Today</p>
+      <p class="temperature">{{ weatherData.main.temp }}°C</p>
+      <!-- <p>Description: {{ weatherData.weather[0].description }}</p> -->
+    </div>
+  </div>
+
+  <div *ngIf="weatherData && forecastData" class="forecast-container">
+    <div class="forecast-item -today">
+      <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
+      <p>Today</p>
+      <p class="temperature">{{ weatherData.main.temp }}°C</p>
+      <!-- <p>Description: {{ weatherData.weather[0].description }}</p> -->
+    </div>
+    <div *ngFor="let forecast of forecastData.list" class="card forecast-item">
+      <img src="http://openweathermap.org/img/wn/{{ forecast.weather[0].icon }}@2x.png" alt="Weather icon">
+      <p>Date: {{ forecast.dt_txt }}</p>
+      <p class="temperature">{{ forecast.main.temp }}°C</p>
+      <!-- <p>Description: {{ forecast.weather[0].description }}</p> -->
+    </div>
+  </div>
+</div>
+
+
+<!-- To show a weather icon based on the weather conditions, you can use the weatherData.weather[0].icon property of the weatherData object, which contains a string with the icon code for the current weather conditions.
+
+You can use this icon code to build a URL to the OpenWeatherMap API's icon resources, like this:
+
+Copy code
+<img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
+This will display an image with the appropriate weather icon for the current conditions. You can also adjust the size of the icon by changing the @2x in the URL to a different value, such as @4x for a larger icon or @1x for a smaller icon.
+
+You can then include this img element in your template wherever you want to display the weather icon. -->

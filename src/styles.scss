@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+// Color Variables
+
+@import "styles/_variables.scss";
+
+html {
+  background: $bgColor;
+
+  --bg: #fff;
+  --color: #232323;
+  --primary: #B280E4;
+}
+
+html.dark-theme {
+  background: $bgColor;
+
+  --bg: #232323;
+  --color: #fff;
+  --primary: #0083FC;
+}
+
+// Animate the transition
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms !important;
+  transition-delay: 0 !important;
+}
+
+.card {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.15);
+  padding: 25px;
+}
+
+body {
+  margin: 0 25px;
+}
+
+@media screen and (min-width: 1240px) {
+  body {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+}
