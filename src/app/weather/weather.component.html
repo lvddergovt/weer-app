@@ -27,7 +27,7 @@
     <div class="card forecast-item -today">
       <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
       <p>Today</p>
-      <p class="temperature">{{ weatherData.main.temp }}°C</p>
+      <p class="temperature">{{ weatherData.main.temp.toFixed(0) }}°</p>
       <!-- <p>Description: {{ weatherData.weather[0].description }}</p> -->
     </div>
   </div>
@@ -35,9 +35,9 @@
   <div *ngIf="forecastData" class="forecast-container">
 
     <div *ngFor="let forecast of forecastData.list" class="card forecast-item">
+      <p>{{ forecast.dt_txt | date:'dd/MM' }}</p>
       <img src="http://openweathermap.org/img/wn/{{ forecast.weather[0].icon }}@2x.png" alt="Weather icon">
-      <p>Date: {{ forecast.dt_txt }}</p>
-      <p class="temperature">{{ forecast.main.temp }}°C</p>
+      <p class="temperature">{{ forecast.main.temp.toFixed(0) }}°</p>
       <!-- <p>Description: {{ forecast.weather[0].description }}</p> -->
     </div>
   </div>

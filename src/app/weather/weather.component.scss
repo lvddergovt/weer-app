@@ -7,6 +7,17 @@
   &.-skeleton {
     flex-flow: nowrap;
   }
+
+  .forecast-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin: 2px;
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -23,7 +34,7 @@
   margin-bottom: 25px;
 
   .temperature {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   &.-today {
