@@ -35,13 +35,13 @@ html.transition *:after {
 }
 
 body {
-  margin: 0 25px;
+  margin: 25px;
   font-family: 'PT Sans', sans-serif;
 }
 
 @media screen and (min-width: 1240px) {
   body {
-    margin: 0 auto;
+    margin: 25px auto;
     max-width: 1200px;
   }
 }

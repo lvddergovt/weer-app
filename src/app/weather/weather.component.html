@@ -1,11 +1,13 @@
 <div>
-  <button (click)="getWeatherByLocation()">Get Weather by Location</button>
-  <form (submit)="getWeatherByCity()">
-    <label for="city">City:</label>
-    <input type="text" id="city" [(ngModel)]="city" name="city">
-    <button type="submit">Get Weather by City</button>
-  </form>
 
+  <div class="input-wrapper">
+    <button (click)="getWeatherByLocation()" id="btnWeatherByLocation"><i class="fa-solid fa-location-dot"></i></button>
+    <form (submit)="getWeatherByCity()">
+      <input type="text" class="search-input" id="city" [(ngModel)]="city" name="city" placeholder="Zoek op locatie">
+      <button type="submit" id="searchSubmitBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+  </div>
+    
 
   <div>
     <ngx-skeleton-loader *ngIf="!contentLoaded" class="forecast-container -skeleton" count="1" [theme]="{ 
@@ -25,16 +27,23 @@
 
   <div *ngIf="weatherData">
     <div class="card forecast-item -today">
-      <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
-      <p>Today</p>
-      <p class="temperature">{{ weatherData.main.temp.toFixed(0) }}°</p>
-      <!-- <p>Description: {{ weatherData.weather[0].description }}</p> -->
+      <div>
+        <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@4x.png" alt="Weather icon">
+      </div>
+      <div>
+        <p class="temperature">{{ weatherData.main.temp.toFixed(0) }}°</p>
+        <p>
+          <i class="fa-solid fa-fw fa-location-dot"></i>&nbsp;
+          <b>{{ weatherData.name }}</b>
+        </p>
+        <p>{{ weatherData.dt | date:'fullDate' }}</p>
+      </div>
     </div>
   </div>
 
   <div *ngIf="forecastData" class="forecast-container">
 
-    <div *ngFor="let forecast of forecastData.list" class="card forecast-item">
+    <div *ngFor="let forecast of forecastData.list.slice(0, 4)" class="card forecast-item">
       <p>{{ forecast.dt_txt | date:'dd/MM' }}</p>
       <img src="http://openweathermap.org/img/wn/{{ forecast.weather[0].icon }}@2x.png" alt="Weather icon">
       <p class="temperature">{{ forecast.main.temp.toFixed(0) }}°</p>
@@ -53,3 +62,14 @@ Copy code
 This will display an image with the appropriate weather icon for the current conditions. You can also adjust the size of the icon by changing the @2x in the URL to a different value, such as @4x for a larger icon or @1x for a smaller icon.
 
 You can then include this img element in your template wherever you want to display the weather icon. -->
+
+<!-- 
+  This code is an Angular HTML template for a weather forecast component. It includes several elements for displaying weather data and interacting with the user:
+
+A button with a (click) event binding that calls the getWeatherByLocation() method when clicked. This method is likely defined in the component's TypeScript code and is used to get the weather data for the user's current location.
+A form with a (submit) event binding that calls the getWeatherByCity() method when submitted. The form includes an input field for the user to enter a city name, and a submit button. This method is likely defined in the component's TypeScript code and is used to get the weather data for the specified city.
+Two ngx-skeleton-loader elements with *ngIf directives that display a loading spinner while the weather data is being fetched.
+A div element with an *ngIf directive that displays the current weather data when it is available. It includes an image that displays an icon representing the current weather conditions, and displays the temperature, city name, and date.
+A div element with an *ngIf directive and an *ngFor directive that displays a forecast for the next four days. It displays an image representing the weather conditions, the date, and the temperature for each day.
+The component's TypeScript code is likely responsible for making requests to a weather API to fetch the weather data and storing it in variables that are bound to the template, such as weatherData and forecastData. The template then uses this data to display the weather information to the user.
+ -->
