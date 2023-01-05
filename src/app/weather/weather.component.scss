@@ -7,24 +7,42 @@
   &.-skeleton {
     flex-flow: nowrap;
   }
+
+  .forecast-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin: 2px;
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {
   .forecast-container {
-    flex-flow: wrap;    
+    flex-flow: wrap;
   }
 }
 
 .forecast-item {
   padding: 25px;
   background-color: $primaryColor;
-  flex: 1 1 auto;
+  flex: 1 1 30%;
+  color: white;
+  margin-bottom: 25px;
 
   .temperature {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   &.-today {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: right;
+    font-size: 21px;
     background: rgb(204, 171, 238);
     background: linear-gradient(
       228deg,
@@ -32,5 +50,75 @@
       rgba(0, 212, 255, 1) 100%,
       rgba(0, 212, 255, 1) 100%
     );
+
+    p {
+      margin: 5px;
+    }
+
+    .temperature {
+      font-size: 90px;
+      margin: 0;
+    }
+  }
+}
+
+.btn-reset {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+
+  #btnWeatherByLocation {
+    @extend .btn-reset;
+    position: absolute;
+    right: 50px;
+    top: 31px;
+    color: $color;
+    font-size: 20px;
+  }
+
+  #searchSubmitBtn {
+    @extend .btn-reset;
+    position: absolute;
+    right: 5px;
+    top: 31px;
+    background-color: $primaryColor;
+    border-radius: 50%;
+    color: white;
+
+  }
+
+  .search-input {
+    height: 50px;
+    padding: 0 100px 0 15px;
+    background: transparent;
+    border: 1px solid white;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 22.5px;
+    width: calc(100% - 115px);
+    margin: 25px 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: block;
+
+    #btnWeatherByLocation {
+      right: 40px;
+    }
+  
+    #searchSubmitBtn {
+      right: 5px;
+    }
+
+    .search-input {
+      width: calc(100% - 115px)
+    }
+
   }
 }

@@ -1,7 +1,13 @@
 @import "styles/_variables.scss";
 
-.app-name {
-  color: $color;
-  text-decoration: none;
-  font-size: 40px;
+nav {
+  margin-bottom: 50px;
+
+  .app-name {
+    color: $color;
+    text-decoration: none;
+    font-size: 40px;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+  }
 }
