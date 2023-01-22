@@ -7,7 +7,7 @@
       <button type="submit" id="searchSubmitBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
   </div>
-    
+
 
   <div>
     <!-- https://blog.angulartraining.com/how-to-use-a-skeleton-loader-with-angular-4f03ae8fa5c6 -->
@@ -43,14 +43,11 @@
   </div>
 
   <div *ngIf="forecastData" class="forecast-container">
-
-    <div *ngFor="let forecast of forecastData.list.slice(0, 4)" class="card forecast-item">
-      <p>{{ forecast.dt_txt | date:'dd/MM' }}</p>
-      <img src="http://openweathermap.org/img/wn/{{ forecast.weather[0].icon }}@2x.png" alt="Weather icon">
-      <p class="temperature">{{ forecast.main.temp.toFixed(0) }}°</p>
-      <!-- <p>Description: {{ forecast.weather[0].description }}</p> -->
-    </div>
+    <app-forecast-item class="card forecast-item" *ngFor="let forecast of forecastData.list.slice(0, 4)"
+      [forecast]="forecast"></app-forecast-item>
   </div>
+
+
 </div>
 
 

@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 import { WeatherService } from '../services/weather.service';
 
 @Component({
@@ -23,26 +25,10 @@ export class WeatherComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        this.weatherService.getWeather(lat, lon).subscribe((data) => {
-          this.weatherData = data;
-          console.log(data);
-        });
-        this.weatherService.getForecast(lat, lon).subscribe((data) => {
-          this.forecastData = data;
-          this.forecastData.list = this.forecastData.list.filter(
-            (forecast: any) => {
-              const date = new Date(forecast.dt_txt);
-              return (
-                date.getHours() === 0 &&
-                date.getMinutes() === 0 &&
-                date.getSeconds() === 0
-              );
-            }
-          );
-        });
+        this.getWeatherData(lat, lon);
+        this.getForecastData(lat, lon);
       });
       this.contentLoaded = true;
-
     } else {
       console.log('Geolocation is not supported by this browser.');
     }
@@ -50,10 +36,30 @@ export class WeatherComponent implements OnInit {
 
   getWeatherByCity() {
     if (this.city) {
-      this.weatherService.getWeather(null, null, this.city).subscribe((data) => {
+      this.getWeatherData(null, null, this.city);
+      this.getForecastData(null, null, this.city);
+      this.contentLoaded = true;
+    }
+  }
+
+  getWeatherData(lat: number | null, lon: number | null, city?: string) {
+    const weatherObserver = {
+      next: (data: any) => {
         this.weatherData = data;
-      });
-      this.weatherService.getForecast(null, null, this.city).subscribe((data) => {
+        console.log(data);
+      },
+      error: (err: HttpErrorResponse) => {
+        alert(
+          'De locatie kon niet worden gevonden. Controleer op spelfouten en probeer opnieuw.'
+        );
+      },
+    };
+    this.weatherService.getWeather(lat, lon, city).subscribe(weatherObserver);
+  }
+
+  getForecastData(lat: number | null, lon: number | null, city?: string) {
+    const forecastObserver = {
+      next: (data: any) => {
         this.forecastData = data;
         this.forecastData.list = this.forecastData.list.filter(
           (forecast: any) => {
@@ -65,9 +71,13 @@ export class WeatherComponent implements OnInit {
             );
           }
         );
-      });
-
-      this.contentLoaded = true;
-    }
+      },
+      error: (err: HttpErrorResponse) => {
+        alert(
+          'De locatie kon niet worden gevonden. Controleer op spelfouten en probeer opnieuw.'
+        );
+      },
+    };
+    this.weatherService.getForecast(lat, lon, city).subscribe(forecastObserver);
   }
 }

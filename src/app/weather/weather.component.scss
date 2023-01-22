@@ -38,7 +38,6 @@
   }
 
   &.-today {
-    display: flex;
     justify-content: space-between;
     align-items: flex-end;
     text-align: right;
@@ -50,6 +49,10 @@
       rgba(0, 212, 255, 1) 100%,
       rgba(0, 212, 255, 1) 100%
     );
+
+    @media screen and (min-width: 666px) {
+      display: flex;
+    }
 
     p {
       margin: 5px;
@@ -91,7 +94,6 @@
     background-color: $primaryColor;
     border-radius: 50%;
     color: white;
-
   }
 
   .search-input {
@@ -111,14 +113,13 @@
     #btnWeatherByLocation {
       right: 40px;
     }
-  
+
     #searchSubmitBtn {
       right: 5px;
     }
 
     .search-input {
-      width: calc(100% - 115px)
+      width: calc(100% - 115px);
     }
-
   }
 }

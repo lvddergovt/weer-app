@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ForecastItemComponent } from './forecast-item/forecast-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+    ForecastItemComponent
   ],
   imports: [
     BrowserModule,
