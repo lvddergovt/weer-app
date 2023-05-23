@@ -2,6 +2,8 @@
 
 nav {
   margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
 
   .app-name {
     color: $color;
@@ -9,5 +11,22 @@ nav {
     font-size: 40px;
     font-family: "Nunito", sans-serif;
     font-weight: bold;
+  }
+
+  .theme-switch {
+    color: $color;
+    display: flex;
+    align-items: center;
+
+    button {
+      cursor: pointer;
+      border: 0;
+      background-color: transparent;
+
+      i {
+        font-size: 30px;
+        color: $color;
+      }
+    }
   }
 }

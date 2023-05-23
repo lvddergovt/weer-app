@@ -10,6 +10,7 @@ export class AppComponent {
   isDarkTheme = false;
 
   toggleDarkTheme(): void {
+    this.isDarkTheme = !this.isDarkTheme;
     document.documentElement.classList.toggle('dark-theme');
     document.documentElement.classList.add('transition');
 

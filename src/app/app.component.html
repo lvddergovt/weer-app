@@ -1,9 +1,15 @@
 <nav>
   <a href="/" class="app-name">
-    <i class="fa-solid fa-fw fa-sun"></i> {{ title }}
+    <i class="fa-solid fa-fw fa-cloud"></i> {{ title }}
   </a>
 
-  <input type="checkbox" (change)="toggleDarkTheme()"/>
+  <span class="theme-switch">
+    Theme:<button (click)="toggleDarkTheme()">
+      <i class="fa-regular" [class]="isDarkTheme ? 'fa-moon' : 'fa-sun'"></i>
+    </button>
+  </span>
+
+
 </nav>
 
 <app-weather></app-weather>

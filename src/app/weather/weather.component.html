@@ -8,7 +8,6 @@
     </form>
   </div>
 
-
   <div>
     <!-- https://blog.angulartraining.com/how-to-use-a-skeleton-loader-with-angular-4f03ae8fa5c6 -->
     <ngx-skeleton-loader *ngIf="!contentLoaded" class="forecast-container -skeleton" count="1" [theme]="{ 
@@ -32,6 +31,9 @@
         <img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@4x.png" alt="Weather icon">
       </div>
       <div>
+        <button class="favorite-btn" (click)="toggleFavorite(weatherData.name)">
+          <i [class]="getHeartIconClass(weatherData.name)" class="heart-icon"></i>
+        </button>
         <p class="temperature">{{ weatherData.main.temp.toFixed(0) }}°</p>
         <p>
           <i class="fa-solid fa-fw fa-location-dot"></i>&nbsp;
@@ -47,27 +49,4 @@
       [forecast]="forecast"></app-forecast-item>
   </div>
 
-
 </div>
-
-
-<!-- To show a weather icon based on the weather conditions, you can use the weatherData.weather[0].icon property of the weatherData object, which contains a string with the icon code for the current weather conditions.
-
-You can use this icon code to build a URL to the OpenWeatherMap API's icon resources, like this:
-
-Copy code
-<img src="http://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Weather icon">
-This will display an image with the appropriate weather icon for the current conditions. You can also adjust the size of the icon by changing the @2x in the URL to a different value, such as @4x for a larger icon or @1x for a smaller icon.
-
-You can then include this img element in your template wherever you want to display the weather icon. -->
-
-<!-- 
-  This code is an Angular HTML template for a weather forecast component. It includes several elements for displaying weather data and interacting with the user:
-
-A button with a (click) event binding that calls the getWeatherByLocation() method when clicked. This method is likely defined in the component's TypeScript code and is used to get the weather data for the user's current location.
-A form with a (submit) event binding that calls the getWeatherByCity() method when submitted. The form includes an input field for the user to enter a city name, and a submit button. This method is likely defined in the component's TypeScript code and is used to get the weather data for the specified city.
-Two ngx-skeleton-loader elements with *ngIf directives that display a loading spinner while the weather data is being fetched.
-A div element with an *ngIf directive that displays the current weather data when it is available. It includes an image that displays an icon representing the current weather conditions, and displays the temperature, city name, and date.
-A div element with an *ngIf directive and an *ngFor directive that displays a forecast for the next four days. It displays an image representing the weather conditions, the date, and the temperature for each day.
-The component's TypeScript code is likely responsible for making requests to a weather API to fetch the weather data and storing it in variables that are bound to the template, such as weatherData and forecastData. The template then uses this data to display the weather information to the user.
- -->

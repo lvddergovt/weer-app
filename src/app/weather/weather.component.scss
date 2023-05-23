@@ -105,6 +105,7 @@
     border-radius: 22.5px;
     width: calc(100% - 115px);
     margin: 25px 0;
+    color: $color;
   }
 
   @media screen and (max-width: 768px) {
@@ -121,5 +122,17 @@
     .search-input {
       width: calc(100% - 115px);
     }
+  }
+}
+
+.favorite-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  .heart-icon {
+    font-size: 30px;
   }
 }
