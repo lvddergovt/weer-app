@@ -20,12 +20,6 @@
   }
 }
 
-@media screen and (max-width: 992px) {
-  .forecast-container {
-    flex-flow: wrap;
-  }
-}
-
 .forecast-item {
   padding: 25px;
   background-color: $primaryColor;
@@ -134,5 +128,28 @@
 
   .heart-icon {
     font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .forecast-container {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+
+    .forecast-item {
+      flex: 0 0 30vw;
+      scroll-snap-align: start;
+      white-space: normal;
+      vertical-align: top;
+    }
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .forecast-container {
+    .forecast-item {
+      flex: 0 0 60vw;
+    }
   }
 }
