@@ -88,6 +88,11 @@
     background-color: $primaryColor;
     border-radius: 50%;
     color: white;
+
+    &:disabled {
+      cursor: default;
+      background-color: gray;
+    }
   }
 
   .search-input {

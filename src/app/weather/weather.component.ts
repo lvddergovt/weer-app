@@ -30,6 +30,8 @@ export class WeatherComponent implements OnInit {
     if (this.favoriteCity) {
       this.city = this.favoriteCity;
       this.getWeatherByCity();
+    } else {
+      this.getWeatherByLocation();
     }
   }
 
@@ -48,7 +50,6 @@ export class WeatherComponent implements OnInit {
         this.getWeatherData(lat, lon);
         this.getForecastData(lat, lon);
       });
-      this.contentLoaded = true;
     } else {
       console.log('Geolocation is not supported by this browser.');
     }
@@ -62,7 +63,6 @@ export class WeatherComponent implements OnInit {
     if (this.city) {
       this.getWeatherData(null, null, this.city);
       this.getForecastData(null, null, this.city);
-      this.contentLoaded = true;
     }
   }
 
@@ -73,6 +73,7 @@ export class WeatherComponent implements OnInit {
     const weatherObserver = {
       next: (data: any) => {
         this.weatherData = data;
+        this.contentLoaded = true;
       },
       error: (err: HttpErrorResponse) => {
         if (!this.errorOccurred) {
@@ -97,12 +98,13 @@ export class WeatherComponent implements OnInit {
           (forecast: any) => {
             const date = new Date(forecast.dt_txt);
             return (
-              date.getHours() === 0 &&
+              date.getHours() === 12 &&
               date.getMinutes() === 0 &&
               date.getSeconds() === 0
             );
           }
         );
+        this.contentLoaded = true;
       },
       error: (err: HttpErrorResponse) => {
         if (!this.errorOccurred) {

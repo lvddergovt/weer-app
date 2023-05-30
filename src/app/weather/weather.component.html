@@ -4,7 +4,8 @@
     <button (click)="getWeatherByLocation()" id="btnWeatherByLocation"><i class="fa-solid fa-location-dot"></i></button>
     <form (submit)="getWeatherByCity()">
       <input type="text" class="search-input" id="city" [(ngModel)]="city" name="city" placeholder="Zoek op locatie">
-      <button type="submit" id="searchSubmitBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button type="submit" [disabled]="city == ''" id="searchSubmitBtn"><i
+          class="fa-solid fa-magnifying-glass"></i></button>
     </form>
   </div>
 
@@ -39,7 +40,8 @@
           <i class="fa-solid fa-fw fa-location-dot"></i>&nbsp;
           <b>{{ weatherData.name }}</b>
         </p>
-        <p>{{ weatherData.dt | date:'fullDate' }}</p>
+        <!-- Het jaartal in `weatherData.dt` is een Unix-timestamp in seconden. Om het correct te formatteren met de `date` pipe, moet het vermenigvuldigd worden met 1000 om het om te zetten naar milliseconden. -->
+        <p>{{ weatherData.dt * 1000 | date:'fullDate' }}</p>
       </div>
     </div>
   </div>
